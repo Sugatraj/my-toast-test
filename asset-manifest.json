@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/my-toast-test/static/css/main.84a803cf.css",
+    "main.js": "/my-toast-test/static/js/main.83fef6f7.js",
+    "static/js/453.9833d3d6.chunk.js": "/my-toast-test/static/js/453.9833d3d6.chunk.js",
+    "static/media/remixicon.svg?t=1729600608771": "/my-toast-test/static/media/remixicon.87f4f2aba0f7e7b586f5.svg",
+    "static/media/remixicon.eot?t=1729600608771": "/my-toast-test/static/media/remixicon.6d6627613405de4e0871.eot",
+    "static/media/remixicon.ttf?t=1729600608771": "/my-toast-test/static/media/remixicon.fb20d73f5629a2600603.ttf",
+    "static/media/remixicon.woff?t=1729600608771": "/my-toast-test/static/media/remixicon.0e0560e0bb236efe7d87.woff",
+    "static/media/remixicon.woff2?t=1729600608771": "/my-toast-test/static/media/remixicon.4dc325b11eb5b41f9e67.woff2",
+    "index.html": "/my-toast-test/index.html",
+    "main.84a803cf.css.map": "/my-toast-test/static/css/main.84a803cf.css.map",
+    "main.83fef6f7.js.map": "/my-toast-test/static/js/main.83fef6f7.js.map",
+    "453.9833d3d6.chunk.js.map": "/my-toast-test/static/js/453.9833d3d6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84a803cf.css",
+    "static/js/main.83fef6f7.js"
+  ]
+}
