@@ -1,0 +1,150 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Toast Container */
+.toast-container {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Consistent gap between toasts */
+}
+
+/* Position Classes for Each Toast */
+.toast-container.top-right { top: 20px; right: 20px; align-items: flex-end; }
+.toast-container.top-left { top: 20px; left: 20px; align-items: flex-start; }
+.toast-container.bottom-right { bottom: 20px; right: 20px; align-items: flex-end; }
+.toast-container.bottom-left { bottom: 20px; left: 20px; align-items: flex-start; }
+
+/* Toast Styling */
+.toast {
+  position: relative;
+  border-radius: 8px;
+  background: #fff;
+  padding: 15px 35px 20px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+  opacity: 0;
+  transform: translateX(100%); /* Start off-screen for entrance animation */
+}
+
+/* Keyframes for Entrance and Exit Animations */
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Active State for Entrance Animation */
+.toast.active {
+  animation: slideIn 0.4s ease forwards;
+  opacity: 1;
+}
+
+/* Closing State for Exit Animation */
+.toast.closing {
+  animation: slideOut 0.3s ease forwards;
+}
+
+/* Toast Content */
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  font-size: 20px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.text.text-1 {
+  font-weight: 600;
+  color: #333;
+}
+
+.text.text-2 {
+  color: #666666;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 5px;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+/* Progress Bar */
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+}
+
+.progress::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  transform-origin: left;
+  animation: progress 3s linear forwards;
+}
+
+/* Keyframes for Progress */
+@keyframes progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* Toast Types */
+.toast.success .check { background-color: #28a745; }
+.toast.danger .check { background-color: #dc3545; }
+.toast.info .check { background-color: #17a2b8; }
+.toast.warning .check { background-color: #ffc107; }
+
+.toast.success .progress::before { background-color: #28a745; }
+.toast.danger .progress::before { background-color: #dc3545; }
+.toast.info .progress::before { background-color: #17a2b8; }
+.toast.warning .progress::before { background-color: #ffc107; }

@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ToastProvider } from "./toast/ToastProvider";
+import ToastService from "./toast/ToastService";
+import "./toast/Toast.css";
 
 function App() {
+  const showCustomToast = () => {
+    ToastService.success("This is a success toast!", {
+      life: 5000,
+      position: "bottom-left", // Overrides container position
+      closable: true,
+      icon: "ri-star-line",
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ToastProvider position="top-right">
+      {" "}
+      {/* Default position */}
+      <div className="App">
+        <h1>Customizable Toast Test</h1>
+        <button onClick={() => ToastService.success("Success message!")}>
+          Success
+        </button>
+        <button onClick={() => ToastService.error("Error message!")}>
+          Error
+        </button>
+        <button onClick={() => ToastService.info("Info message!")}>Info</button>
+        <button onClick={() => ToastService.warning("Warning message!")}>
+          Warning
+        </button>
+        <button onClick={showCustomToast}>Show Custom Position Toast</button>
+      </div>
+    </ToastProvider>
   );
 }
 
