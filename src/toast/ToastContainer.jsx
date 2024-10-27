@@ -24,15 +24,33 @@ export const ToastContainer = forwardRef((props, ref) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   };
 
-  return (
-    <>
-      {toasts.map((toast) => (
+  // Separate toasts by position
+  const renderToastsByPosition = (position) => {
+    return toasts
+      .filter((toast) => toast.position === position)
+      .map((toast) => (
         <ToastMessage
           key={toast.id}
           {...toast}
           onClose={() => removeToast(toast.id)}
         />
-      ))}
+      ));
+  };
+
+  return (
+    <>
+      <div className="toast-container top-right">
+        {renderToastsByPosition("top-right")}
+      </div>
+      <div className="toast-container top-left">
+        {renderToastsByPosition("top-left")}
+      </div>
+      <div className="toast-container bottom-right">
+        {renderToastsByPosition("bottom-right")}
+      </div>
+      <div className="toast-container bottom-left">
+        {renderToastsByPosition("bottom-left")}
+      </div>
     </>
   );
 });

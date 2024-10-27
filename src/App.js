@@ -4,25 +4,25 @@ import ToastService from "./toast/ToastService";
 
 function App() {
   const showSuccessToastTopRight = () => {
-    ToastService.success("This is a success message in the top-right!", {
+    ToastService.success("This is spark note toasts", {
       position: "top-right",
     });
   };
 
   const showInfoToastTopLeft = () => {
-    ToastService.info("This is an info message in the top-left!", {
+    ToastService.info("This is spark note toasts", {
       position: "top-left",
     });
   };
 
   const showWarningToastBottomRight = () => {
-    ToastService.warning("This is a warning message in the bottom-right!", {
+    ToastService.warning("This is spark note toasts", {
       position: "bottom-right",
     });
   };
 
   const showErrorToastBottomLeft = () => {
-    ToastService.error("This is an error message in the bottom-left!", {
+    ToastService.error("This is spark note toasts", {
       position: "bottom-left",
     });
   };
