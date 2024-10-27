@@ -1,7 +1,8 @@
 {
-  "name": "my-toast-test",
+  "name": "sparknote-custom-toast",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Sugatraj.github.io/my-toast-test",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -17,7 +18,9 @@
     "build": "set POSTCSS_COMPAT=true && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:css": "tailwindcss -i ./src/index.css -o ./public/dist/output.css --watch"
+    "build:css": "tailwindcss -i ./src/index.css -o ./public/dist/output.css",
+    "predeploy": "npm run build:css && npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +42,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.2.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14"
   }
