@@ -9,9 +9,7 @@ export const ToastMessage = ({
   life = 3000,
   closable = true,
   icon,
-  className = "",
-  position,
-  index,
+  position = "top-right",
 }) => {
   const [isActive, setIsActive] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -39,27 +37,22 @@ export const ToastMessage = ({
   };
 
   const getIconClass = () => {
-    if (icon) return icon;
-    switch (type) {
-      case "success":
-        return "ri-check-line";
-      case "danger":
-        return "ri-close-circle-line";
-      case "info":
-        return "ri-information-line";
-      case "warning":
-        return "ri-alert-line";
-      default:
-        return "ri-information-line";
-    }
+    return (
+      icon ||
+      {
+        success: "ri-check-line",
+        danger: "ri-close-circle-line",
+        info: "ri-information-line",
+        warning: "ri-alert-line",
+      }[type]
+    );
   };
 
   return (
     <div
       className={`toast ${type} ${position} ${isActive ? "active" : ""} ${
         isClosing ? "closing" : ""
-      } ${className}`}
-      style={{ "--index": index }}
+      }`}
     >
       <div className="toast-content">
         <i className={`check ${getIconClass()}`} />

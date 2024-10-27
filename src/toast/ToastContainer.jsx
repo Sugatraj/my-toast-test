@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { ToastMessage } from "./ToastMessage";
 import "./Toast.css";
 
-export const ToastContainer = forwardRef(({ position = "top-right" }, ref) => {
+export const ToastContainer = forwardRef((props, ref) => {
   const [toasts, setToasts] = useState([]);
 
   useImperativeHandle(ref, () => ({
@@ -13,9 +13,8 @@ export const ToastContainer = forwardRef(({ position = "top-right" }, ref) => {
         message,
         life: options.life || 3000,
         closable: options.closable ?? true,
-        customIcon: options.icon || null,
-        className: options.className || "",
-        position: options.position || position, // Use individual position if provided, otherwise default
+        icon: options.icon || null,
+        position: options.position, // Pass individual position
       };
       setToasts((prev) => [...prev, newToast]);
     },
@@ -26,24 +25,15 @@ export const ToastContainer = forwardRef(({ position = "top-right" }, ref) => {
   };
 
   return (
-    <div className="toast-container">
-      {toasts.map((toast, index) => (
+    <>
+      {toasts.map((toast) => (
         <ToastMessage
           key={toast.id}
-          id={toast.id}
-          type={toast.type}
-          message={toast.message}
-          life={toast.life}
-          closable={toast.closable}
-          onClose={removeToast}
-          icon={toast.customIcon}
-          className={toast.className}
-          position={toast.position}
-          index={index} // Pass index for dynamic spacing
-          total={toasts.length}
+          {...toast}
+          onClose={() => removeToast(toast.id)}
         />
       ))}
-    </div>
+    </>
   );
 });
 

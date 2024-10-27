@@ -8,27 +8,41 @@
 
 /* Toast Container */
 .toast-container {
-  position: fixed;
+  position: relative;
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Consistent gap between toasts */
 }
 
 /* Position Classes for Each Toast */
-.toast-container.top-right { top: 20px; right: 20px; align-items: flex-end; }
-.toast-container.top-left { top: 20px; left: 20px; align-items: flex-start; }
-.toast-container.bottom-right { bottom: 20px; right: 20px; align-items: flex-end; }
-.toast-container.bottom-left { bottom: 20px; left: 20px; align-items: flex-start; }
+.toast.top-right,
+.toast.top-left {
+  margin-bottom: 10px; /* Gap between stacked toasts for top-aligned toasts */
+}
+.toast.bottom-right,
+.toast.bottom-left {
+  margin-top: 10px; /* Gap between stacked toasts for bottom-aligned toasts */
+}
+
+.toast-container.top-right,
+.toast-container.top-left {
+  flex-direction: column-reverse; /* Newer toasts appear below older ones */
+}
+
+/* Individual Toast Positioning */
+.toast.top-right { top: 20px; right: 20px; position: fixed; }
+.toast.top-left { top: 20px; left: 20px; position: fixed; }
+.toast.bottom-right { bottom: 20px; right: 20px; position: fixed; }
+.toast.bottom-left { bottom: 20px; left: 20px; position: fixed; }
 
 /* Toast Styling */
 .toast {
-  position: relative;
   border-radius: 8px;
   background: #fff;
-  padding: 15px 35px 20px 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  min-width: 300px;
+  padding: 10px 20px 10px 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Compact width */
+  max-width: 85%; /* Responsive for smaller screens */
   opacity: 0;
   transform: translateX(100%); /* Start off-screen for entrance animation */
 }
@@ -71,7 +85,7 @@
 .toast-content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .check {
@@ -80,6 +94,8 @@
   justify-content: center;
   height: 35px;
   width: 35px;
+  min-width: 35px; /* Ensures circular shape */
+  min-height: 35px; /* Ensures circular shape */
   font-size: 20px;
   border-radius: 50%;
   color: #fff;
@@ -102,8 +118,8 @@
 
 .close {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 8px;
+  right: 10px;
   cursor: pointer;
   opacity: 0.7;
   padding: 5px;

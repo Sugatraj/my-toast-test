@@ -1,37 +1,53 @@
 import React from "react";
-import { ToastProvider } from "./toast/ToastProvider";
+import Toast from "./toast/Toast";
 import ToastService from "./toast/ToastService";
-import "./toast/Toast.css";
 
 function App() {
-  const showCustomToast = () => {
-    ToastService.success("This is a success toast!", {
-      life: 5000,
-      position: "bottom-left", // Overrides container position
-      closable: true,
-      icon: "ri-star-line",
+  const showSuccessToastTopRight = () => {
+    ToastService.success("This is a success message in the top-right!", {
+      position: "top-right",
+    });
+  };
+
+  const showInfoToastTopLeft = () => {
+    ToastService.info("This is an info message in the top-left!", {
+      position: "top-left",
+    });
+  };
+
+  const showWarningToastBottomRight = () => {
+    ToastService.warning("This is a warning message in the bottom-right!", {
+      position: "bottom-right",
+    });
+  };
+
+  const showErrorToastBottomLeft = () => {
+    ToastService.error("This is an error message in the bottom-left!", {
+      position: "bottom-left",
     });
   };
 
   return (
-    <ToastProvider position="top-right">
-      {" "}
-      {/* Default position */}
+    <>
+      <Toast position="top-right" /> {/* Default position */}
       <div className="App">
-        <h1>Customizable Toast Test</h1>
-        <button onClick={() => ToastService.success("Success message!")}>
-          Success
-        </button>
-        <button onClick={() => ToastService.error("Error message!")}>
-          Error
-        </button>
-        <button onClick={() => ToastService.info("Info message!")}>Info</button>
-        <button onClick={() => ToastService.warning("Warning message!")}>
-          Warning
-        </button>
-        <button onClick={showCustomToast}>Show Custom Position Toast</button>
+        <h1>Test Toast Positions</h1>
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <button onClick={showSuccessToastTopRight}>
+            Show Success Toast (Top Right)
+          </button>
+          <button onClick={showInfoToastTopLeft}>
+            Show Info Toast (Top Left)
+          </button>
+          <button onClick={showWarningToastBottomRight}>
+            Show Warning Toast (Bottom Right)
+          </button>
+          <button onClick={showErrorToastBottomLeft}>
+            Show Error Toast (Bottom Left)
+          </button>
+        </div>
       </div>
-    </ToastProvider>
+    </>
   );
 }
 
